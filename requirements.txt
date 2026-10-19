@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+pydantic-settings
+python-dotenv
+google-genai
+supabase
+pypdf
+python-docx
+pytest
+httpx
