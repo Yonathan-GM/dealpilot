@@ -1,0 +1,10 @@
+[
+  {"name": "Brightline Foods Ltd", "industry": "Food manufacturing", "contact_name": "Maya Chen", "contact_email": "maya.chen@brightline.example", "status": "active", "notes": "Needs food-contact compliance paperwork with every order."},
+  {"name": "Kestrel Logistics", "industry": "Logistics and warehousing", "contact_name": "Daniel Osei", "contact_email": "d.osei@kestrel.example", "status": "active", "notes": "High pallet volume; evaluating plastic pallets for cold storage."},
+  {"name": "Alder Pharma Co", "industry": "Pharmaceutical", "contact_name": "Priya Nair", "contact_email": "priya.nair@alderpharma.example", "status": "lead", "notes": "Interested in custom-printed boxes with lot-number area."},
+  {"name": "Summit Home Goods", "industry": "Retail and e-commerce", "contact_name": "Tom Reyes", "contact_email": "treyes@summithome.example", "status": "at_risk", "notes": "Unhappy about a late delivery; comparing competitor prices."},
+  {"name": "Greenfield Farms Co-op", "industry": "Agriculture", "contact_name": "Aisha Bello", "contact_email": "aisha@greenfield.example", "status": "active", "notes": "Wraps produce pallets; part of stock is stored outdoors."},
+  {"name": "Ironwood Furniture Works", "industry": "Furniture manufacturing", "contact_name": "Lars Eriksen", "contact_email": "lars@ironwood.example", "status": "lead", "notes": "New lead from a trade show. Needs heavy-duty boxes."},
+  {"name": "Tidewater Beverages", "industry": "Beverage", "contact_name": "Sofia Marin", "contact_email": "s.marin@tidewater.example", "status": "active", "notes": "Exports to the EU, so pallets must carry ISPM-15 certification."},
+  {"name": "Pinecrest Electronics", "industry": "Electronics", "contact_name": "Kenji Ito", "contact_email": "kenji.ito@pinecrest.example", "status": "churned", "notes": "Left for a supplier with lower minimum order quantities."}
+]
