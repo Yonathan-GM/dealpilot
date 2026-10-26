@@ -12,5 +12,8 @@ class Settings(BaseSettings):
     supabase_url: str
     supabase_service_key: str
 
+    api_key: str = ""          # empty = API is open (local development only)
+    max_upload_mb: int = 5
+
 
 settings = Settings()

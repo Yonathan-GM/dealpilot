@@ -9,23 +9,24 @@ from app.services.extract import extract_text
 INSERT_BATCH = 50
 
 
-def ingest_file(path: Path, doc_type: str, customer_id: str | None = None) -> int:
-    """Ingest one file. Returns the number of chunks stored.
+def ingest_text(
+    filename: str, text: str, doc_type: str, customer_id: str | None = None
+) -> int:
+    """Chunk, embed and store already-extracted text. Returns the chunk count.
 
-    Re-running on the same filename replaces the old version (idempotent).
+    Re-running with the same filename replaces the old version (idempotent).
     """
-    text = extract_text(path)
-    chunks = chunk_text(text, title=path.stem)
+    chunks = chunk_text(text, title=Path(filename).stem)
     if not chunks:
         return 0
 
     # Embed first: if this fails, the old version of the document is untouched.
     embeddings = embed_many([c.text for c in chunks], task_type="RETRIEVAL_DOCUMENT")
 
-    supabase.table("documents").delete().eq("filename", path.name).execute()
+    supabase.table("documents").delete().eq("filename", filename).execute()
     doc = (
         supabase.table("documents")
-        .insert({"filename": path.name, "doc_type": doc_type, "customer_id": customer_id})
+        .insert({"filename": filename, "doc_type": doc_type, "customer_id": customer_id})
         .execute()
     )
     document_id = doc.data[0]["id"]
@@ -42,3 +43,8 @@ def ingest_file(path: Path, doc_type: str, customer_id: str | None = None) -> in
     for start in range(0, len(rows), INSERT_BATCH):
         supabase.table("chunks").insert(rows[start : start + INSERT_BATCH]).execute()
     return len(rows)
+
+
+def ingest_file(path: Path, doc_type: str, customer_id: str | None = None) -> int:
+    """Read a file from disk and ingest it."""
+    return ingest_text(path.name, extract_text(path), doc_type, customer_id)
