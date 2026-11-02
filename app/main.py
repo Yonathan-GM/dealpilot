@@ -2,13 +2,13 @@ from fastapi import Depends, FastAPI, Request
 from fastapi.responses import JSONResponse
 from google.genai import errors as genai_errors
 
-from app.api import ask, documents
+from app.api import ask, customers, documents
 from app.api.deps import require_api_key
 from app.core.config import settings
 
 app = FastAPI(
     title="DealPilot API",
-    version="0.1.0",
+    version="0.2.0",
     description="AI sales assistant for a B2B distributor: document Q&A with citations.",
 )
 
@@ -29,3 +29,4 @@ def health() -> dict:
 
 app.include_router(ask.router, dependencies=[Depends(require_api_key)])
 app.include_router(documents.router, dependencies=[Depends(require_api_key)])
+app.include_router(customers.router, dependencies=[Depends(require_api_key)])

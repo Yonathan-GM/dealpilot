@@ -67,3 +67,18 @@ def chat(prompt: str) -> str:
         )
     )
     return result.text or ""
+
+
+def chat_json(prompt: str, schema: types.Schema) -> str:
+    """Ask for a reply that follows a JSON schema. Returns the raw JSON text."""
+    result = _with_retries(
+        lambda: _client.models.generate_content(
+            model=settings.gemini_chat_model,
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                response_mime_type="application/json",
+                response_schema=schema,
+            ),
+        )
+    )
+    return result.text or ""
